@@ -11,11 +11,7 @@ window.addEventListener('load', function () {
     /*            FUNCIÓN 1: Escuchamos el submit y preparamos el envío           */
     /* -------------------------------------------------------------------------- */
     form.addEventListener('submit', function (event) {
-
         event.preventDefault();
-
-       mostrarSpinner();
-
         //creamos el cuerpo de la request
         const payload = {
             firstName: nombre.value,
@@ -62,19 +58,15 @@ window.addEventListener('load', function () {
                     //guardo en LocalStorage el objeto con el token
                     localStorage.setItem('jwt', JSON.stringify(data.jwt));
 
-                    // Una vez obtenida la respuesta de la API, ocultamos el spinner
-                    // ocultarSpinner();
-
                     //redireccionamos a la página
                     location.replace('./mis-tareas.html');
                 }
                 
             }).catch(err => {
-                //Ocultamos el spinner en caso de error
-                ocultarSpinner();
                 console.log("Promesa rechazada:");
                 console.log(err);
             })
     };
+
 
 });

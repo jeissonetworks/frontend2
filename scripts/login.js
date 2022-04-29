@@ -10,11 +10,7 @@ window.addEventListener('load', function () {
     /*            FUNCIÓN 1: Escuchamos el submit y preparamos el envío           */
     /* -------------------------------------------------------------------------- */
     form.addEventListener('submit', function (event) {
-
         event.preventDefault();
-
-        //Aquí podemos mostrar el spinner para indicar a la persona que se ha iniciado el proceso de login
-        mostrarSpinner();
 
         //creamos el cuerpo de la request
         const payload = {
@@ -38,7 +34,7 @@ window.addEventListener('load', function () {
 
 
     /* -------------------------------------------------------------------------- */
-    /*                     FUNCIÓN 2: Realizar el login [POST]                     */
+    /*                     FUNCIÓN 2: Realizar el login [POST]                    */
     /* -------------------------------------------------------------------------- */
     function realizarLogin(settings) {
         console.log("Lanzando la consulta a la API...");
@@ -61,15 +57,10 @@ window.addEventListener('load', function () {
                     //guardo en LocalStorage el objeto con el token
                     localStorage.setItem('jwt', JSON.stringify(data.jwt));
 
-                    //Una vez obtenida la respuesta de la API, ocultamos el spinner
-                    
                     //redireccionamos a la página
                     location.replace('./mis-tareas.html');
-                    // ocultarSpinner();
                 }
             }).catch(err => {
-                //Ocultamos el spinner en caso de error
-                ocultarSpinner();
                 console.log("Promesa rechazada:");
                 console.log(err);
             })
